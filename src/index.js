@@ -1,0 +1,38 @@
+require('dotenv').config();
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const morgan = require('morgan');
+const productRoutes = require('./routes/productRoutes');
+const rackRoutes = require('./routes/rackRoutes');
+
+const app = express();
+
+// Middleware
+app.use(cors());
+app.use(morgan('dev'));
+app.use(express.json());
+
+// Rutas
+app.use('/api/products', productRoutes);
+app.use('/api/racks', rackRoutes);
+
+// Conexión a MongoDB
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => {
+    console.log('Conectado a MongoDB');
+  })
+  .catch((error) => {
+    console.error('Error conectando a MongoDB:', error.message);
+  });
+
+// Manejo de errores
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: 'Algo salió mal!' });
+});
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en el puerto ${PORT}`);
+}); 
