@@ -14,6 +14,16 @@ const rackSchema = new mongoose.Schema({
     type: String,
     trim: true
   },
+  categorias: {
+    type: [String],
+    required: true,
+    validate: {
+      validator: function(v) {
+        return v.length > 0;
+      },
+      message: 'El rack debe tener al menos una categoría'
+    }
+  },
   bodega: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Bodega',

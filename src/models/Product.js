@@ -24,10 +24,6 @@ const productSchema = new mongoose.Schema({
       message: 'El precio debe ser un número entero en pesos chilenos (CLP)'
     }
   },
-  ubicacion: {
-    type: String,
-    required: true
-  },
   categoria: {
     type: String,
     required: true
@@ -35,6 +31,11 @@ const productSchema = new mongoose.Schema({
   rack: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Rack',
+    required: true
+  },
+  bodega: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Bodega',
     required: true
   }
 }, {
