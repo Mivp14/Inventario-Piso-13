@@ -3,8 +3,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const morgan = require('morgan');
+
 const productRoutes = require('./routes/productRoutes');
 const rackRoutes = require('./routes/rackRoutes');
+const bodegaRoutes = require('./routes/bodegaRoutes');
 
 const app = express();
 
@@ -16,6 +18,7 @@ app.use(express.json());
 // Rutas
 app.use('/api/products', productRoutes);
 app.use('/api/racks', rackRoutes);
+app.use('/api/bodegas', bodegaRoutes);
 
 // Conexión a MongoDB
 mongoose.connect(process.env.MONGODB_URI)
@@ -35,4 +38,4 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
-}); 
+});

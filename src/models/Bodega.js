@@ -1,7 +1,12 @@
 const mongoose = require('mongoose');
 
-const rackSchema = new mongoose.Schema({
+const bodegaSchema = new mongoose.Schema({
   nombre: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  ubicacion: {
     type: String,
     required: true,
     trim: true
@@ -10,17 +15,12 @@ const rackSchema = new mongoose.Schema({
     type: String,
     trim: true
   },
-  ubicacion: {
-    type: String,
-    trim: true
-  },
-  bodega: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Bodega',
-    required: true
+  esCentral: {
+    type: Boolean,
+    default: false
   }
 }, {
   timestamps: true
 });
 
-module.exports = mongoose.model('Rack', rackSchema);
+module.exports = mongoose.model('Bodega', bodegaSchema);
