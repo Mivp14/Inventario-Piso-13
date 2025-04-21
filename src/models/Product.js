@@ -28,6 +28,11 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  estacion: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Estacion',
+    required: true
+  },
   rack: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Rack',

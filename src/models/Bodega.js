@@ -3,22 +3,18 @@ const mongoose = require('mongoose');
 const bodegaSchema = new mongoose.Schema({
   nombre: {
     type: String,
-    required: true,
-    trim: true
+    required: true
   },
-  ubicacion: {
-    type: String,
-    required: true,
-    trim: true
+  descripcion: String,
+  estacion: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Estacion',
+    required: true
   },
-  descripcion: {
-    type: String,
-    trim: true
-  },
-  esCentral: {
-    type: Boolean,
-    default: false
-  }
+  racks: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Rack'
+  }]
 }, {
   timestamps: true
 });

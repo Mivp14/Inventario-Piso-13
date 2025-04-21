@@ -7,6 +7,7 @@ const morgan = require('morgan');
 const productRoutes = require('./routes/productRoutes');
 const rackRoutes = require('./routes/rackRoutes');
 const bodegaRoutes = require('./routes/bodegaRoutes');
+const estacionRoutes = require('./routes/estacionRoutes');
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use('/api/products', productRoutes);
 app.use('/api/racks', rackRoutes);
 app.use('/api/bodegas', bodegaRoutes);
+app.use('/api/estaciones', estacionRoutes);
 
 // Conexión a MongoDB
 mongoose.connect(process.env.MONGODB_URI)
