@@ -11,13 +11,17 @@ const estacionRoutes = require('./routes/estacionRoutes');
 
 const app = express();
 
-// Configuración de CORS
 const corsOptions = {
-  origin: ['https://piso13-front.vercel.app', 'http://localhost:5173'],
+  origin: [
+    'https://piso13-front.vercel.app', 
+    'https://inventario-piso-13-st5r.vercel.app',
+    'http://localhost:5173'
+  ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 };
+
 
 // Middleware
 app.use(cors(corsOptions));
