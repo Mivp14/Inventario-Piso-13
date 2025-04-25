@@ -12,11 +12,18 @@ const estacionRoutes = require('./routes/estacionRoutes');
 const app = express();
 
 const corsOptions = {
-  origin: [
-    'https://piso13-front.vercel.app', 
-    'https://inventario-piso-13-st5r.vercel.app',
-    'http://localhost:5173'
-  ],
+  origin: (origin, callback) => {
+    const allowedOrigins = [
+      'https://piso13-front.vercel.app',
+      'https://inventario-piso-13-st5r.vercel.app',
+      'http://localhost:5173'
+    ];
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('No autorizado por CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
